@@ -1,8 +1,6 @@
 package com.ddbes.dailytask.entity;
 
 import io.swagger.annotations.ApiModelProperty;
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -14,8 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Task {
     @Id
-    @Ignore
-    @ApiModelProperty("任务id")
+    @ApiModelProperty(value = "任务id",hidden = true)
     private Long id;
     @ApiModelProperty("用户id")
     @NonNull

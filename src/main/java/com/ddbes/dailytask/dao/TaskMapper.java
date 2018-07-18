@@ -26,6 +26,6 @@ public interface TaskMapper extends BaseMapper<Task> {
 //    @Select("SELECT content,complete,plan FROM task WHERE userId = #{id} ORDER BY datetime DESC")
 //    Map taskList(String id);
 
-    @Select("SELECT a.date,t.user_id,t.datetime,IFNULL(t.content,'休假') content,t.complete,t.plan FROM (SELECT DATE_FORMAT(date, '%Y-%m-%d') date FROM calendar WHERE date >= (SELECT date_sub(curdate(),INTERVAL WEEKDAY(curdate()) DAY)) AND date <= (SELECT date_sub(curdate(),INTERVAL WEEKDAY(curdate()) - 4 DAY))) a LEFT JOIN (SELECT user_id,datetime,content,complete,plan from task WHERE user_id = 1) t ON DATE_FORMAT(t.datetime, '%Y-%m-%d') = a.date ORDER BY a.date ASC")
+    @Select("SELECT a.date,IFNULL(t.content,'暂无计划') content,IFNULL(t.complete,'') complete,IFNULL(t.plan,'') plan FROM (SELECT DATE_FORMAT(date, '%Y-%m-%d') date FROM calendar WHERE date >= (SELECT date_sub(curdate(),INTERVAL WEEKDAY(curdate()) DAY)) AND date <= (SELECT date_sub(curdate(),INTERVAL WEEKDAY(curdate()) - 4 DAY))) a LEFT JOIN (SELECT datetime,content,complete,plan from task WHERE user_id = 1) t ON DATE_FORMAT(t.datetime, '%Y-%m-%d') = a.date ORDER BY a.date ASC")
     List<Map<String,Object>> findTaskByUserId(@Param("userId") Long userId);
 }

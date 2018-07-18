@@ -8,7 +8,7 @@ import java.util.Map;
 public class Provider {
 
     public String findTask(Map param) {
-        SQL sql = new SQL().SELECT("t.id,u.username,t.user_id,DATE_FORMAT(t.datetime,'%Y-%m-%d %H:%i') datetime,t.content,t.complete,t.plan").FROM("task t LEFT JOIN USER u ON u.id = t.user_id LEFT JOIN t_group g ON u.group_id = g.groupId");
+        SQL sql = new SQL().SELECT("t.id,u.username,t.user_id,DATE_FORMAT(t.datetime,'%Y-%m-%d') datetime,t.content,t.complete,t.plan").FROM("task t LEFT JOIN USER u ON u.id = t.user_id LEFT JOIN t_group g ON u.group_id = g.groupId");
         if (StrKit.notBlank(param.get("userId")+"")) {
             sql.WHERE("u.Id = #{userId}");
         }
