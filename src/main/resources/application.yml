@@ -1,0 +1,31 @@
+server:
+  port: 8303
+spring:
+  application:
+    name: ddbes-task
+# JDBC配置
+  datasource:
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/joinu
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: root
+# Druid 连接池配置
+      initial-size: 5
+      max-active: 30
+      min-idle: 5
+      max-wait: 60000
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: -1
+      validation-query: select 'x'
+      validation-query-timeout: 5
+      test-on-borrow: true
+      test-on-return: false
+      test-while-idle: true
+swagger:
+  enabled: true
+  title: Ddbes-Task - 日常任务 API Doc
+  base-package: com.ddbes.dailytask.controller
+  base-path: /**
+  description: 开发中
+  version: 1.0.0.RELEASE
